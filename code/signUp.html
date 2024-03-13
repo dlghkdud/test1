@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="login.css" type="text/css" resl="stylesheet">
+    <title>signUp</title>
+
+    <style>
+        @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+        
+        *{
+            font-family: 'Jeju Gothic', sans-serif;
+        }
+        input::placeholder{
+            font-family: 'Jeju Gothic', sans-serif;
+        }
+
+    </style>
+</head>
+
+<body>
+    <img style="display: block; position: relative; width: 930px; margin-top: -10px; margin-left: -10px;" src="../img/회원가입페이지.jpg">
+
+    <form>
+        <h3 style="display:block; position: absolute; left: 65%; top: 278px; font-size: 30px;">Sign Up</h3>
+        <input style="position: absolute; left: 65%; top: 350px; height: 28px; width: 260px; border-right:0px; border-top:0px; border-left: 0px;" 
+        type="email" name="email" placeholder="이메일" id="signUpEmail" required >
+        <br>
+        <input style="position: absolute; left: 65%; top: 393px; height: 28px; width: 260px; font-family: none;  border-right:0px; border-top:0px; border-left: 0px;" 
+        type="password" name="pw" placeholder="비밀번호" id="signUpPassword" required>
+        <br>
+        <button style="position: absolute; left: 65%; top: 437px; height: 33px; width: 268px; border:none; background-color: #08060b; color:honeydew;" 
+        type="submit" id="signUpButton">회원가입</button>
+        <button style="position: absolute; left: 65%; top: 480px; height: 33px; width: 268px; border:none; background-color: #08060b; color:honeydew;" 
+        type="button" onclick="location.href='signIn.html'">로그인하러가기</button>
+    </form>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyA0K3lT-U6qQWQOVWqMBG5ZrnhhA7uKwqs",
+          authDomain: "mydaily-becb8.firebaseapp.com",
+          projectId: "mydaily-becb8",
+          storageBucket: "mydaily-becb8.appspot.com",
+          messagingSenderId: "39171067875",
+          appId: "1:39171067875:web:bc6f7337128ac8d0131ad6"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
+
+        document.getElementById('signUpButton').addEventListener('click',(event)=>{
+            event.preventDefault()
+            const email=document.getElementById('signUpEmail').value
+            const password=document.getElementById('signUpPassword').value
+            const auth = getAuth();
+            createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in 
+                alert('회원가입 완료.');
+                console.log(userCredential)
+                const user = userCredential.user;
+                // ...
+            })
+            .catch((error) => {
+                alert('회원가입 실패. \n이메일 또는 비밀번호를 다시 확인해주요.');
+                console.log('error')
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+            });
+
+        })
+        
+    </script>
+
+</body>
+
+</html>

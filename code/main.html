@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyDaily</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+        
+        *{
+            font-family: 'Jeju Gothic', sans-serif;
+        }
+        input::placeholder{
+            font-family: 'Jeju Gothic', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calendar">
+        <div class="header">
+            <div class="year-month"></div> <!-- 월이 변경될때마다 변하는부분 -->
+            <div class="nav">
+                <button class="nav-btn go-prev" onclick="prevMonth()">&lt;</button>
+                <button class="nav-btn go-today" onclick="goToday()">Today</button>
+                <button class="nav-btn go-next" onclick="nextMonth()">&gt;</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main"> <!-- 후에 스타일링할때 서로 간격맞춰야할수도있어서 -->
+        <div class="days">
+            <div class="day">일</div>
+            <div class="day">월</div>
+            <div class="day">화</div>
+            <div class="day">수</div>
+            <div class="day">목</div>
+            <div class="day">금</div>
+            <div class="day">토</div>
+        </div>
+        <div class="dates" onclick="showPopup()"></div> <!-- 이전달, 다음달로 넘어갈 때 날짜갯수가 다를수있기때문에 js -->
+    </div>
+</div>
+    <script src="main.js"></script>
+    
+</body>
+
+
+</html>
